@@ -2,11 +2,17 @@ import React, { useState } from 'react';
 import { SafeAreaView, Keyboard, TouchableWithoutFeedback } from 'react-native';
 
 import Header from '../../../components/header/Header';
+import Picker from '../../../components/picker/Picker.android';
 import { Background, Input, SubmitButton, SubmitText } from './PageNew.styles';
 
 export default function PageNew() {
   const [valor, setValor] = useState('');
   const [tipo, setTipo] = useState(null);
+
+  function handleSubmit() {
+    alert(tipo);
+    alert(valor);
+  }
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -14,16 +20,16 @@ export default function PageNew() {
         <Header />
 
         <SafeAreaView style={{ alignItems: 'center' }}>
-          {/* <Input
+          <Input
             placeholder="Valor desejado"
             keyboardType="numeric"
             returnKeyType="next"
             onSubmitEditing={() => Keyboard.dismiss()}
-            value={value}
+            value={valor}
             onChangeText={(text) => setValor(text)}
-          ></Input> */}
-
-          <SubmitButton>
+          ></Input>
+          <Picker onChange={setTipo}></Picker>
+          <SubmitButton onPress={handleSubmit}>
             <SubmitText>Registrar</SubmitText>
           </SubmitButton>
         </SafeAreaView>
